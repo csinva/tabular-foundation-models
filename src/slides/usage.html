@@ -1,0 +1,47 @@
+<section id="usage" data-transition="fade" style="background:#F6F4EF;color:#16202E;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:56px;font-weight:600;line-height:1.1">TabPFN v2: inference</h2>
+<div style="display:flex;align-items:stretch;gap:0px">
+<div style="width:520px;display:flex;flex-direction:column;gap:20px;background:#FDFCF9;border:1px solid #D8D1C3;border-radius:16px;padding:36px">
+<h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:32px;font-weight:600">Input: one table</h3>
+<svg aria-label="Five train rows with known labels in orange, then two test rows whose labels are empty and dashed" width="424" height="200" viewBox="0 0 424 200" style="width:424px;height:200px">
+<g fill="#D8D1C3">
+<rect x="0" y="0" width="64" height="22" rx="4"/><rect x="72" y="0" width="64" height="22" rx="4"/><rect x="144" y="0" width="64" height="22" rx="4"/><rect x="216" y="0" width="64" height="22" rx="4"/><rect x="288" y="0" width="64" height="22" rx="4"/>
+<rect x="0" y="28" width="64" height="22" rx="4"/><rect x="72" y="28" width="64" height="22" rx="4"/><rect x="144" y="28" width="64" height="22" rx="4"/><rect x="216" y="28" width="64" height="22" rx="4"/><rect x="288" y="28" width="64" height="22" rx="4"/>
+<rect x="0" y="56" width="64" height="22" rx="4"/><rect x="72" y="56" width="64" height="22" rx="4"/><rect x="144" y="56" width="64" height="22" rx="4"/><rect x="216" y="56" width="64" height="22" rx="4"/><rect x="288" y="56" width="64" height="22" rx="4"/>
+<rect x="0" y="84" width="64" height="22" rx="4"/><rect x="72" y="84" width="64" height="22" rx="4"/><rect x="144" y="84" width="64" height="22" rx="4"/><rect x="216" y="84" width="64" height="22" rx="4"/><rect x="288" y="84" width="64" height="22" rx="4"/>
+<rect x="0" y="112" width="64" height="22" rx="4"/><rect x="72" y="112" width="64" height="22" rx="4"/><rect x="144" y="112" width="64" height="22" rx="4"/><rect x="216" y="112" width="64" height="22" rx="4"/><rect x="288" y="112" width="64" height="22" rx="4"/>
+</g>
+<g fill="#B9CBDD">
+<rect x="0" y="150" width="64" height="22" rx="4"/><rect x="72" y="150" width="64" height="22" rx="4"/><rect x="144" y="150" width="64" height="22" rx="4"/><rect x="216" y="150" width="64" height="22" rx="4"/><rect x="288" y="150" width="64" height="22" rx="4"/>
+<rect x="0" y="178" width="64" height="22" rx="4"/><rect x="72" y="178" width="64" height="22" rx="4"/><rect x="144" y="178" width="64" height="22" rx="4"/><rect x="216" y="178" width="64" height="22" rx="4"/><rect x="288" y="178" width="64" height="22" rx="4"/>
+</g>
+<g fill="#B4501F">
+<rect x="360" y="0" width="64" height="22" rx="4"/><rect x="360" y="28" width="64" height="22" rx="4"/><rect x="360" y="56" width="64" height="22" rx="4"/><rect x="360" y="84" width="64" height="22" rx="4"/><rect x="360" y="112" width="64" height="22" rx="4"/>
+</g>
+<g fill="none" stroke="#B4501F" stroke-width="2" stroke-dasharray="5 4">
+<rect x="361" y="151" width="62" height="20" rx="4"/><rect x="361" y="179" width="62" height="20" rx="4"/>
+</g>
+</svg>
+<p style="font-size:24px;line-height:1.35;color:#4A5361">Train rows with labels, test rows without</p>
+</div>
+<svg width="96" height="24" viewBox="0 0 96 24" style="align-self:center;flex:none"><line x1="10" y1="12" x2="78" y2="12" stroke="#16202E" stroke-width="3"/><path d="M76 3 L92 12 L76 21 Z" fill="#16202E"/></svg>
+<div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;background:#16202E;color:#F6F4EF;border-radius:16px;padding:40px">
+<h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:32px;font-weight:600">TabPFN v2</h3>
+<p style="font-size:26px;line-height:1.4;color:#B8C2CF">Weights frozen. One forward pass over train and test rows together.</p>
+</div>
+<svg width="96" height="24" viewBox="0 0 96 24" style="align-self:center;flex:none"><line x1="10" y1="12" x2="78" y2="12" stroke="#16202E" stroke-width="3"/><path d="M76 3 L92 12 L76 21 Z" fill="#16202E"/></svg>
+<div style="width:440px;display:flex;flex-direction:column;gap:16px;background:#FDFCF9;border:1px solid #D8D1C3;border-radius:16px;padding:36px">
+<h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:32px;font-weight:600">Output per test row</h3>
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#4A5361">p(y | x, D_train)</p>
+<div style="display:flex;align-items:center;gap:16px"><p style="width:40px;font-size:24px">A</p><div style="width:216px;height:28px;background:#B4501F;border-radius:3px"></div><p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px">0.72</p></div>
+<div style="display:flex;align-items:center;gap:16px"><p style="width:40px;font-size:24px">B</p><div style="width:63px;height:28px;background:#B4501F;border-radius:3px"></div><p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px">0.21</p></div>
+<div style="display:flex;align-items:center;gap:16px"><p style="width:40px;font-size:24px">C</p><div style="width:21px;height:28px;background:#B4501F;border-radius:3px"></div><p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px">0.07</p></div>
+<p style="font-size:24px;line-height:1.35;color:#4A5361">Regression: a density over bins</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;background:#16202E;border-radius:16px;padding:36px 40px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:28px;line-height:1.6;color:#F6F4EF">clf = TabPFNClassifier()<br>clf.fit(X_train, y_train)  <span style="color:#8F9BAB"># stores data, no gradient steps</span><br>proba = clf.predict_proba(X_test)  <span style="color:#8F9BAB"># forward pass on train + test</span></p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5F6672">Source: Hollmann et al., “Accurate predictions on small data with a tabular foundation model”, Nature (2025); github.com/PriorLabs/TabPFN</p>
+<aside>How TabPFN v2 is used. The input is the whole table: training rows with their labels and test rows without. The model runs one forward pass over all of it and outputs a predictive distribution for each test row: class probabilities for classification, a density over bins for regression. The weights never change. In the scikit-learn style API, fit only stores and preprocesses the data; the real work happens in predict. The next slides explain how pretraining makes this work.</aside>
+</section>

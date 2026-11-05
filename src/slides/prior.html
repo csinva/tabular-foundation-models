@@ -1,0 +1,41 @@
+<section id="prior" data-transition="fade" style="background:#F6F4EF;color:#16202E;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:56px;font-weight:600;line-height:1.1">TabPFN v2: prior</h2>
+<div style="display:flex;gap:64px">
+<div style="width:640px;display:flex;flex-direction:column;gap:24px">
+<svg aria-label="Example causal graph: hidden nodes at the top, observed feature nodes in blue, one target node in orange, with features both upstream and downstream of the target" width="640" height="480" viewBox="0 0 640 480" style="width:640px;height:480px">
+<defs><marker id="priorA" markerUnits="userSpaceOnUse" viewBox="-14 -7 14 14" markerWidth="14" markerHeight="14" refX="29" refY="0" orient="auto" overflow="visible"><path d="M-14 -7 L0 0 L-14 7 Z" fill="#7A808A"/></marker></defs>
+<g stroke="#7A808A" stroke-width="3" marker-end="url(#priorA)">
+<line x1="110" y1="50" x2="190" y2="190"/>
+<line x1="320" y1="40" x2="190" y2="190"/>
+<line x1="320" y1="40" x2="430" y2="190"/>
+<line x1="530" y1="60" x2="430" y2="190"/>
+<line x1="190" y1="190" x2="90" y2="320"/>
+<line x1="190" y1="190" x2="320" y2="310"/>
+<line x1="430" y1="190" x2="320" y2="310"/>
+<line x1="430" y1="190" x2="540" y2="320"/>
+<line x1="90" y1="320" x2="200" y2="430"/>
+<line x1="320" y1="310" x2="200" y2="430"/>
+<line x1="320" y1="310" x2="450" y2="430"/>
+<line x1="540" y1="320" x2="450" y2="430"/>
+</g>
+<g fill="#CFC7B8"><circle cx="110" cy="50" r="26"/><circle cx="320" cy="40" r="26"/><circle cx="530" cy="60" r="26"/><circle cx="430" cy="190" r="26"/><circle cx="450" cy="430" r="26"/></g>
+<g fill="#2F5D8A"><circle cx="190" cy="190" r="26"/><circle cx="90" cy="320" r="26"/><circle cx="540" cy="320" r="26"/><circle cx="200" cy="430" r="26"/></g>
+<circle cx="320" cy="310" r="26" fill="#B4501F"/>
+</svg>
+<div style="display:flex;gap:32px;align-items:center">
+<div style="display:flex;gap:10px;align-items:center"><div style="width:24px;height:24px;background:#2F5D8A;border-radius:50%"></div><p style="font-size:24px">feature</p></div>
+<div style="display:flex;gap:10px;align-items:center"><div style="width:24px;height:24px;background:#B4501F;border-radius:50%"></div><p style="font-size:24px">target</p></div>
+<div style="display:flex;gap:10px;align-items:center"><div style="width:24px;height:24px;background:#CFC7B8;border-radius:50%"></div><p style="font-size:24px">hidden</p></div>
+</div>
+</div>
+<div style="flex:1;display:grid;grid-template-columns:240px 1fr;gap:28px 24px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#B4501F">Graph</p><p style="font-size:26px;line-height:1.35">Random scale-free DAG; node count log-uniform</p>
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#B4501F">Edges</p><p style="font-size:26px;line-height:1.35">Small MLPs (ReLU, sigmoid, sine, modulo), decision trees, discretization</p>
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#B4501F">Noise</p><p style="font-size:26px;line-height:1.35">Gaussian on each edge; root noise normal, uniform or mixed</p>
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#B4501F">Categoricals</p><p style="font-size:26px;line-height:1.35">Index of the nearest random prototype vector</p>
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#B4501F">Post-process</p><p style="font-size:26px;line-height:1.35">Kumaraswamy warping, quantization, MCAR missing values</p>
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#B4501F">Sizes</p><p style="font-size:26px;line-height:1.35">≤2,048 train rows, 1–160 features, ≤10 classes, &lt;75k cells</p>
+</div>
+</div>
+<aside>How one synthetic table is generated. Sample a directed acyclic graph with a scale-free generator. Each edge applies a random function: a small MLP with one of several activations, a decision-tree-like rule, or a discretization, plus Gaussian noise. Pick some nodes as features and one as the target; the rest stay hidden. Features can sit upstream or downstream of the target. Categorical features come from mapping a vector to its nearest random prototype. Post-processing adds Kumaraswamy warping, quantization and missing values. Sizes during pretraining: up to 2,048 training rows, 1 to 160 features, up to 10 classes, under 75 thousand cells.</aside>
+</section>

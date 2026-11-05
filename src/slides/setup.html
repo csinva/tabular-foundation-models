@@ -1,0 +1,21 @@
+<section id="setup" data-transition="fade" style="background:#F6F4EF;color:#16202E;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:56px;font-weight:600;line-height:1.1">Setup</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#FDFCF9;border:1px solid #D8D1C3;border-radius:16px;padding:40px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#B4501F">PER DATASET</p>
+<h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:40px;font-weight:600">Gradient-boosted trees</h3>
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:30px;line-height:1.6">θ* = argmin L(θ; D_train)<br>+ hyperparameter search<br>ŷ = f(x; θ*)</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#FDFCF9;border:1px solid #D8D1C3;border-radius:16px;padding:40px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#B4501F">PRETRAINED ONCE</p>
+<h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:40px;font-weight:600">Tabular foundation model</h3>
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:30px;line-height:1.6">θ fixed, no gradient steps on D<br>ŷ ~ q_θ(y | x, D_train)<br>one forward pass</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;background:#16202E;color:#F6F4EF;border-radius:16px;padding:40px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#F0894A">PRETRAINING TARGET</p>
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:36px">q_θ(y | x, D) ≈ ∫ p(y | x, φ) p(φ | D) dφ</p>
+<p style="font-size:26px;color:#B8C2CF">φ: a data-generating mechanism drawn from a prior (for TabPFN: a structural causal model)</p>
+</div>
+<aside>Standard workflow: fit a model per dataset, tune hyperparameters, predict. Tabular foundation models are trained once. At prediction time the training set is passed as input together with the test rows, and the model outputs predictions in one forward pass. There is no gradient step on the user's data. The pretraining objective makes the model approximate the posterior predictive distribution under a prior over data-generating mechanisms. In TabPFN that prior is a distribution over structural causal models.</aside>
+</section>

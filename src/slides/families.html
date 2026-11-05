@@ -1,0 +1,57 @@
+<section id="families" data-transition="fade" style="background:#ECE7DC;color:#16202E;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:56px;font-weight:600;line-height:1.1">Modern architectures alter inference-time attention</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FDFCF9;border:1px solid #D8D1C3;border-radius:16px;padding:40px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#B4501F">A</p>
+<h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:40px;font-weight:600">Per-cell attention</h3>
+<div style="position:relative;width:736px;height:340px">
+<svg aria-label="A grid of cells stacked as several layers; one cell attends along its row and its column" style="position:absolute;left:0;top:0" width="736" height="300" viewBox="0 0 736 300">
+<rect x="72" y="28" width="468" height="230" rx="8" fill="#F6F4EF" stroke="#C9C1B1" stroke-width="2"/>
+<rect x="56" y="44" width="468" height="230" rx="8" fill="#F6F4EF" stroke="#C9C1B1" stroke-width="2"/>
+<rect x="36" y="56" width="476" height="238" rx="8" fill="#FDFCF9"/>
+<g fill="#E4DED2">
+<rect x="40" y="60" width="60" height="30" rx="4"/><rect x="108" y="60" width="60" height="30" rx="4"/><rect x="176" y="60" width="60" height="30" rx="4"/><rect x="312" y="60" width="60" height="30" rx="4"/><rect x="380" y="60" width="60" height="30" rx="4"/><rect x="448" y="60" width="60" height="30" rx="4"/>
+<rect x="40" y="100" width="60" height="30" rx="4"/><rect x="108" y="100" width="60" height="30" rx="4"/><rect x="176" y="100" width="60" height="30" rx="4"/><rect x="312" y="100" width="60" height="30" rx="4"/><rect x="380" y="100" width="60" height="30" rx="4"/><rect x="448" y="100" width="60" height="30" rx="4"/>
+<rect x="40" y="180" width="60" height="30" rx="4"/><rect x="108" y="180" width="60" height="30" rx="4"/><rect x="176" y="180" width="60" height="30" rx="4"/><rect x="312" y="180" width="60" height="30" rx="4"/><rect x="380" y="180" width="60" height="30" rx="4"/><rect x="448" y="180" width="60" height="30" rx="4"/>
+<rect x="40" y="220" width="60" height="30" rx="4"/><rect x="108" y="220" width="60" height="30" rx="4"/><rect x="176" y="220" width="60" height="30" rx="4"/><rect x="312" y="220" width="60" height="30" rx="4"/><rect x="380" y="220" width="60" height="30" rx="4"/><rect x="448" y="220" width="60" height="30" rx="4"/>
+<rect x="40" y="260" width="60" height="30" rx="4"/><rect x="108" y="260" width="60" height="30" rx="4"/><rect x="176" y="260" width="60" height="30" rx="4"/><rect x="312" y="260" width="60" height="30" rx="4"/><rect x="380" y="260" width="60" height="30" rx="4"/><rect x="448" y="260" width="60" height="30" rx="4"/>
+</g>
+<g fill="#9FB9D6"><rect x="40" y="140" width="60" height="30" rx="4"/><rect x="108" y="140" width="60" height="30" rx="4"/><rect x="176" y="140" width="60" height="30" rx="4"/><rect x="312" y="140" width="60" height="30" rx="4"/><rect x="380" y="140" width="60" height="30" rx="4"/><rect x="448" y="140" width="60" height="30" rx="4"/></g>
+<g fill="#E8B796"><rect x="244" y="60" width="60" height="30" rx="4"/><rect x="244" y="100" width="60" height="30" rx="4"/><rect x="244" y="180" width="60" height="30" rx="4"/><rect x="244" y="220" width="60" height="30" rx="4"/><rect x="244" y="260" width="60" height="30" rx="4"/></g>
+<rect x="244" y="140" width="60" height="30" rx="4" fill="#16202E"/>
+</svg>
+<p style="position:absolute;left:570px;top:140px;width:160px;font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:28px">× L layers</p>
+</div>
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:26px">O(n·d² + d·n²) per layer</p>
+<p style="font-size:24px;line-height:1.4;color:#4A5361">Every row compares its d cells pairwise, and every column compares its n cells pairwise.</p>
+<p style="font-size:26px;line-height:1.4;color:#4A5361">TabPFN v2, 2.5 · Mitra · LimiX</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FDFCF9;border:1px solid #D8D1C3;border-radius:16px;padding:40px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#B4501F">B</p>
+<h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:40px;font-weight:600">Compress rows, then ICL</h3>
+<div style="position:relative;width:736px;height:340px">
+<svg aria-label="A grid of cells is compressed to one vector per row; the row vectors go into an in-context learning transformer" style="position:absolute;left:0;top:0" width="736" height="300" viewBox="0 0 736 300">
+<defs><marker id="famA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#16202E"/></marker></defs>
+<g fill="#E4DED2">
+<rect x="0" y="20" width="44" height="30" rx="4"/><rect x="52" y="20" width="44" height="30" rx="4"/><rect x="104" y="20" width="44" height="30" rx="4"/><rect x="156" y="20" width="44" height="30" rx="4"/>
+<rect x="0" y="60" width="44" height="30" rx="4"/><rect x="52" y="60" width="44" height="30" rx="4"/><rect x="104" y="60" width="44" height="30" rx="4"/><rect x="156" y="60" width="44" height="30" rx="4"/>
+<rect x="0" y="100" width="44" height="30" rx="4"/><rect x="52" y="100" width="44" height="30" rx="4"/><rect x="104" y="100" width="44" height="30" rx="4"/><rect x="156" y="100" width="44" height="30" rx="4"/>
+<rect x="0" y="140" width="44" height="30" rx="4"/><rect x="52" y="140" width="44" height="30" rx="4"/><rect x="104" y="140" width="44" height="30" rx="4"/><rect x="156" y="140" width="44" height="30" rx="4"/>
+<rect x="0" y="180" width="44" height="30" rx="4"/><rect x="52" y="180" width="44" height="30" rx="4"/><rect x="104" y="180" width="44" height="30" rx="4"/><rect x="156" y="180" width="44" height="30" rx="4"/>
+<rect x="0" y="220" width="44" height="30" rx="4"/><rect x="52" y="220" width="44" height="30" rx="4"/><rect x="104" y="220" width="44" height="30" rx="4"/><rect x="156" y="220" width="44" height="30" rx="4"/>
+</g>
+<rect x="208" y="20" width="32" height="30" rx="4" fill="#2F5D8A"/><rect x="208" y="60" width="32" height="30" rx="4" fill="#2F5D8A"/><rect x="208" y="100" width="32" height="30" rx="4" fill="#2F5D8A"/><rect x="208" y="140" width="32" height="30" rx="4" fill="#2F5D8A"/><rect x="208" y="180" width="32" height="30" rx="4" fill="#2F5D8A"/><rect x="208" y="220" width="32" height="30" rx="4" fill="#2F5D8A"/><g stroke="#16202E" stroke-width="3" fill="none" marker-end="url(#famA)"><line x1="252" y1="135" x2="292" y2="135"/><line x1="436" y1="135" x2="496" y2="135"/></g>
+<g fill="#2F5D8A"><rect x="304" y="20" width="120" height="30" rx="4"/><rect x="304" y="60" width="120" height="30" rx="4"/><rect x="304" y="100" width="120" height="30" rx="4"/><rect x="304" y="140" width="120" height="30" rx="4"/><rect x="304" y="180" width="120" height="30" rx="4"/><rect x="304" y="220" width="120" height="30" rx="4"/></g>
+<rect x="508" y="65" width="216" height="140" rx="12" fill="#16202E"/>
+</svg>
+<p style="position:absolute;left:508px;top:116px;width:216px;text-align:center;font-family:'Space Grotesk', Arial, sans-serif;font-size:32px;font-weight:600;color:#F6F4EF">ICL</p>
+<p style="position:absolute;left:0;top:262px;width:250px;font-size:24px;line-height:1.3;color:#4A5361">cells + <span style="color:#2F5D8A"><b>CLS</b></span> token, column + row attn</p>
+<p style="position:absolute;left:290px;top:262px;width:200px;font-size:24px;line-height:1.3;color:#4A5361">CLS output = row vector</p>
+</div>
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:26px">O(n·d²) rows + O(n²) ICL</p>
+<p style="font-size:24px;line-height:1.4;color:#4A5361">Cells are compared only within their row; then the n row vectors are compared pairwise once.</p>
+<p style="font-size:26px;line-height:1.4;color:#4A5361">TabICL, v2 · TabPFN-3, 3.5 · TabFM · Kumo Tabular</p>
+</div>
+</div>
+<aside>The later models fall into two designs. Design A is TabPFN v2's: every cell keeps its own vector through all layers, with attention along rows and columns. Cost per layer grows with n times d squared plus d times n squared. TabPFN-2.5, Mitra and LimiX stay with this design. Design B was introduced by TabICL. Column and row attention run for a few layers, then each row is compressed into one vector: learned CLS tokens are appended to each row, attend over its cells, and their outputs become the row vector. The blue cell at the end of each row is the CLS token, and the blue bars are its outputs. These costs are for a forward pass at inference. A deep in-context learning transformer then works on n row vectors instead of n times d cells. This is what makes million-row inputs feasible. TabPFN itself switched to design B in version 3, and Google's TabFM and NVIDIA's Kumo Tabular are both design B.</aside>
+</section>

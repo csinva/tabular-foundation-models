@@ -1,0 +1,39 @@
+<section id="rfm" data-transition="fade" style="background:#F6F4EF;color:#16202E;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:56px;font-weight:600;line-height:1.1">KumoRFM-2</h2>
+<p style="font-size:28px;color:#4A5361">vs TabPFN v2: input is a relational database, not one table</p>
+</div>
+<div style="display:flex;gap:64px">
+<div style="width:780px;display:flex;flex-direction:column;gap:20px">
+<div style="position:relative;width:780px;height:380px">
+<svg aria-label="Three tables: orders links to users and to products by foreign keys" style="position:absolute;left:0;top:0" width="780" height="380" viewBox="0 0 780 380">
+<g stroke="#7A808A" stroke-width="3"><line x1="330" y1="190" x2="120" y2="220"/><line x1="450" y1="190" x2="660" y2="220"/></g>
+</svg>
+<div style="position:absolute;left:270px;top:0;width:240px;height:190px;display:flex;flex-direction:column;gap:6px;background:#FDFCF9;border:2px solid #B4501F;border-radius:12px;padding:20px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:26px;font-weight:500">orders</p>
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#4A5361">user_id<br>product_id<br>ts</p>
+</div>
+<div style="position:absolute;left:0;top:220px;width:240px;height:150px;display:flex;flex-direction:column;gap:6px;background:#FDFCF9;border:1px solid #D8D1C3;border-radius:12px;padding:20px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:26px;font-weight:500">users</p>
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#4A5361">user_id<br>signup_ts</p>
+</div>
+<div style="position:absolute;left:540px;top:220px;width:240px;height:150px;display:flex;flex-direction:column;gap:6px;background:#FDFCF9;border:1px solid #D8D1C3;border-radius:12px;padding:20px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:26px;font-weight:500">products</p>
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#4A5361">product_id<br>price</p>
+</div>
+</div>
+<p style="font-size:26px;line-height:1.4;color:#4A5361">Rows = nodes, foreign keys = edges. Sample a 2-hop subgraph around each entity using only data before time t.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:10px;background:#16202E;color:#F6F4EF;border-radius:14px;padding:28px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#F0894A">TASK (PQL)</p>
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;line-height:1.5">PREDICT COUNT(orders.*, 0, 30, days) = 0<br>FOR EACH users.user_id</p>
+</div>
+<p style="font-size:26px;line-height:1.4">Context: replay the database at past times tᵢ; label = outcome in (tᵢ, tᵢ + 30 d]. Up to 10K examples.</p>
+<p style="font-size:26px;line-height:1.4">Layers: column/row attention per table, then foreign-key and cross-sample attention.</p>
+<div style="display:flex;flex-direction:column;gap:8px"><p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#B4501F">RELBENCH CLASSIFICATION, AUROC (BARS FROM 55)</p><div style="display:flex;align-items:center;gap:12px"><p style="width:330px;font-size:24px;text-align:right">TabPFN-2.5, entity table only</p><div style="width:79px;height:24px;background:#9AA0A8;border-radius:2px"></div><p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px">61.6</p></div><div style="display:flex;align-items:center;gap:12px"><p style="width:330px;font-size:24px;text-align:right">Flattened tables + TabPFN</p><div style="width:252px;height:24px;background:#9AA0A8;border-radius:2px"></div><p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px">76.0</p></div><div style="display:flex;align-items:center;gap:12px"><p style="width:330px;font-size:24px;text-align:right">Supervised RelGNN</p><div style="width:277px;height:24px;background:#2F5D8A;border-radius:2px"></div><p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px">78.1</p></div><div style="display:flex;align-items:center;gap:12px"><p style="width:330px;font-size:24px;text-align:right">KumoRFM-2</p><div style="width:295px;height:24px;background:#B4501F;border-radius:2px"></div><p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px">79.6</p></div></div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5F6672">Source: arXiv 2604.12596 (Apr 2026). Now offered as NVIDIA Kumo Relational.</p>
+<aside>KumoRFM-2 is Kumo's relational model, released in April before the NVIDIA deal. The input is a whole database. Each row is a node and foreign keys are edges. For a prediction about one entity at time t, it samples a two-hop subgraph around that entity using only data from before t. The task is written in a query language, for example: will this user place zero orders in the next 30 days. In-context examples come from the same database: replay it at earlier anchor times and compute what happened in the following window, up to about ten thousand examples. Inside, it runs column and row attention within each table, then attention across foreign keys and across the context examples, with the context labels injected early. The chart shows why the relational part matters. On RelBench classification, TabPFN-2.5 given only the entity table reaches 61.6 AUROC; flattening the database into one table for TabPFN reaches 76.0; the best supervised relational model reaches 78.1; KumoRFM-2 reaches 79.6 without task-specific training. These numbers are from Kumo's own paper.</aside>
+</section>

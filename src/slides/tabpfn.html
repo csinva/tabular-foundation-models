@@ -1,0 +1,15 @@
+<section id="tabpfn" data-transition="fade" style="background:#F6F4EF;color:#16202E;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:56px;font-weight:600;line-height:1.1">TabPFN-2.5, 3, 3.5</h2>
+<table style="font-size:24px;color:#16202E">
+<tr><th style="width:14%;text-align:left"></th><th style="width:19%;text-align:left">v2 · Jan 2025</th><th style="width:21%;text-align:left">2.5 · Nov 2025</th><th style="width:23%;text-align:left">3 · May 2026</th><th style="width:23%;text-align:left">3.5 · Sep 2026</th></tr>
+<tr><td>Design</td><td>A: per-cell</td><td>A: per-cell</td><td><b>B: column → row → ICL</b></td><td><b>B: column → row → ICL</b></td></tr>
+<tr><td>Params</td><td>~7M</td><td>~11M</td><td>53M / 58M</td><td>220M (Fast 84M)</td></tr>
+<tr><td>Rows</td><td>10k</td><td>50k</td><td>1M</td><td>1M</td></tr>
+<tr><td>Features</td><td>500</td><td>2k</td><td>200 at 1M rows</td><td>6k (max 20k)</td></tr>
+<tr><td>Classes</td><td>10</td><td>10</td><td>160</td><td>not stated</td></tr>
+<tr><td>Changes</td><td>–</td><td>24 layers; feature groups of 3; 64 learned “thinking rows”; Real-TabPFN finetuned on 43 real datasets</td><td>QASSMax; one shared KV head for test rows; row chunking; retrieval decoder for classes</td><td>Fourier + ECDF cell features; one model for classification and regression; ICL width 1024</td></tr>
+</table>
+<p style="font-size:26px;line-height:1.4;color:#4A5361">Thinking mode (3-Plus, 3.5-Thinking): extra inference-time compute, up to +15% Elo. Mechanism not published.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5F6672">Sources: arXiv 2511.08667, 2605.13986, 2609.17895. 2.5 param count from the TabPFN-3 report; v2 from config.</p>
+<aside>How Prior Labs' own line moved away from v2. TabPFN-2.5 keeps the per-cell design but doubles the depth to 24 layers for classification, embeds features in groups of three, and adds 64 learned rows that act as extra compute and attention sinks. A variant is finetuned on 43 real datasets. TabPFN-3 switches to design B, with the column, row and ICL stages from TabICL and the same log-length attention scaling. Test rows share one key-value head, which cuts the cache eight-fold, and rows are processed in chunks; together these get to a million rows. Classes up to 160 via a retrieval-style decoder. TabPFN-3.5 is about four times larger, adds Fourier and empirical-CDF features per cell, and trains one model for both classification and regression. The thinking mode spends more compute at inference; Prior Labs has not published how it works.</aside>
+</section>

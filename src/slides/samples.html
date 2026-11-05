@@ -1,0 +1,5 @@
+<section id="samples" data-transition="fade" style="background:#F6F4EF;color:#16202E;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:56px;font-weight:600;line-height:1.1">TabPFN v2: one draw from the prior</h2>
+<div class="viz" data-viz="prior" style="width:1664px;height:640px"></div>
+<aside>A simplified version of the prior, running live. Every few seconds it samples a new causal graph, random functions on the edges, and 260 rows. One node becomes the target and is binned into classes; two other nodes are shown as features. Features can be upstream or downstream of the target, or unrelated. The real prior is larger: up to 160 features, more function types, warping, quantization and missing values. Pretraining sees about 130 million of these.</aside>
+</section>

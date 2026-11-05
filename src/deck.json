@@ -1,0 +1,68 @@
+{
+  "v": 4,
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-10-01T12:00:00Z"
+  },
+  "lists": "css",
+  "title": "The State of Tabular Foundation Models",
+  "order": [
+    "cover",
+    "sec1",
+    "lineage",
+    "industry",
+    "arena",
+    "licenses",
+    "sec2",
+    "setup",
+    "usage",
+    "pfn",
+    "prior",
+    "samples",
+    "training",
+    "inference",
+    "kvcache",
+    "tabpfnts",
+    "sec3",
+    "realtabpfn",
+    "families",
+    "tabpfn",
+    "tabicl",
+    "limix",
+    "mitra",
+    "tabfm",
+    "tabdpt",
+    "kumo",
+    "rfm",
+    "compute"
+  ],
+  "sections": {
+    "overview": {
+      "description": "Overview: lineage, companies, leaderboard, licenses",
+      "start": "cover"
+    },
+    "tabpfnv2": {
+      "description": "TabPFN v2: inference, training, prior, KV caching",
+      "start": "sec2"
+    },
+    "later": {
+      "description": "Later models and how they differ from TabPFN v2",
+      "start": "sec3"
+    }
+  },
+  "faces": {
+    "space-grotesk": {
+      "family": "Space Grotesk",
+      "href": "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400..700&display=swap"
+    },
+    "ibm-plex-sans": {
+      "family": "IBM Plex Sans",
+      "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap"
+    },
+    "ibm-plex-mono": {
+      "family": "IBM Plex Mono",
+      "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap"
+    }
+  },
+  "designSystems": []
+}
