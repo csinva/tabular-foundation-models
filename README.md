@@ -2,6 +2,8 @@
 
 A talk on tabular foundation models: how TabPFN v2 works, what later models changed, and where the field stood in October 2026.
 
+**[View the presentation](https://csinva.io/tabular-foundation-models/)**
+
 ## Controls
 
 - Next / previous slide: arrow keys, Space, or click the right / left half of the screen
